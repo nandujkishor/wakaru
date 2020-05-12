@@ -1,0 +1,110 @@
+{% load static %}
+<!Doctype HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"> -->
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Sans+Condensed|Gelasio|Lora|Public+Sans&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<body>
+    <aside class="sidebar-left">
+        <span class="logo">wakaru</span>
+        <section class="course-listing">
+            <!-- <span>Courses</span> -->
+            {% for c in courses %}
+            <div class="cl-course">
+                <span {% if c.code == course.code %}class="current"{% endif %}>
+                    {{c.title}}
+                </span>
+            </div>
+            {% endfor %}
+        </section>
+    </aside>
+    <main>
+        <content>
+            <span class="large">{{ course.code }}: {{ course.title }}</span>
+            <section>
+                <div class="top-nav">
+                    <ul>
+                        <li>Home</li>
+                        <li id="active">Lectures</li>
+                        <li>Announcements</li>
+                        <li>Resources</li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Lectures section -->
+            <section class="main-lectures">
+                {% for lecture in lectures %}
+                {% include "lecture.html" %}
+                {% endfor %}
+                <!-- <div class="lecture">
+                    <span class="date">May 27</span>
+                    <span>Lecture 2: Logical clocks and global snapshot mechanisms</span>
+                </div>
+                <div class="lecture">
+                    <span class="date">May 31</span>
+                    <span>Lecture 3: Replicated systems</span>
+                </div> -->
+            </section>
+        </content>
+        <aside>
+            {% if instructor %}
+            <section class="instructor-control">
+                <span class="l-new" onclick="newlecture()">New lecture</span>
+                <span class="l-new ic-stud">Add students</span>
+            </section>
+            {% endif %}
+            <!-- <section class="add">
+                <a href="1/add/page/">Add page</a>
+            </section> -->
+        </aside>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {% if instructor %}
+        <script>
+            $(".editaction").click(function() {
+                console.log("Click");
+                $(this).attr('contenteditable','true');
+                $(this).addClass('editable');
+            });
+            $(".l-title").on('keydown', function(e) {
+                if (e.which == 13) {
+                    console.log("Enter");
+                    $(this).attr('contenteditable','false');
+                    $(this).removeClass('editable');
+                    $(this).blur();
+                    var lec = $(this).parent().parent().get(0).id;
+                    lec = lec.substring(2);
+                    $.post(lec+"/title/", {data:$(this).text()}, function(data, status) {
+                        console.log(data, status);
+                    });
+                    return false;
+                }
+            });
+            $(".l-desc").on('keydown', function(e) {
+                if (e.which == 13) {
+                    console.log("Enter");
+                    $(this).attr('contenteditable','false');
+                    $(this).removeClass('editable');
+                    $(this).blur();
+                    var lec = $(this).parent().parent().get(0).id;
+                    lec = lec.substring(2);
+                    $.post(lec+"/desc/", {data:$(this).text()}, function(data, status) {
+                        console.log(data, status);
+                    });
+                    return false;
+                }
+            });
+            function newlecture() {
+                $.get("lecture/new/", function(data, status) {
+                    $(".main-lectures").append(data);
+                    $("html, body").animate({ scrollTop: $(document).height()-$(window).height()});
+                });
+            }
+        </script>
+        {% endif %}
+    </main>
+</body>
+</html>

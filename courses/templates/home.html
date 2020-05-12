@@ -1,0 +1,125 @@
+<!Doctype HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Sans+Condensed|Gelasio|Lora|Public+Sans&display=swap" rel="stylesheet">
+<style>
+:root {
+    --accent-color: rgb(3, 115, 98);
+}
+html, body {
+    height: 100%;
+    font-family: 'Public Sans';
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+.two {
+    height: 100vh;
+}
+.logo {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    display: inline-block;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.85);
+}
+@media screen and (min-width: 500px) {
+    .one, .two {
+        height: initial;
+    }
+    section {
+        display: grid;
+        height: 100%;
+        grid-template-columns: 50% 50%;
+    }
+    /* .logo {
+        font-size: 60px;
+    } */
+}
+.one-container {
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.one {
+    background-color: #fff;
+}
+.one a {
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.7);
+}
+.one a:hover {
+    color: green;
+}
+.one-logo {
+    bottom: 20px;
+    text-align: left;
+    margin: 0 auto;
+    display: block;
+}
+.two {
+    background-color: #000;
+    background-image: url('https://source.unsplash.com/collection/2330757');
+    background-size: cover;
+    background-position: center;
+}
+.courses {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -2%;
+}
+.course {
+    /* width: calc(100%/3); */
+    background-color: #e5e5e5;
+    padding: 10px;
+    flex-basis: calc(100%/3 - 2%);
+    margin-left: 2%;
+    margin-bottom: 2%;
+    height: 150px;
+    /* background:rgba(3, 115, 98, 1); */
+    /* color: white; */
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); */
+}
+.course h3 {
+    padding-top: 20px;
+}
+.course:hover {
+    /* background-color: #d5d5d5; */
+    /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); */
+    /* background:rgba(3, 115, 98, 1); */
+}
+.welcome {
+    margin: 10px 0 20px;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+/* https://images.unsplash.com/photo-1578341275088-6643de6763b9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ave-calvar-xgtIk9LudhA-unsplash.jpg */
+/* https://images.unsplash.com/photo-1559644705-9d56b56e1380?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=alice-butenko-RIgxEe1HjeY-unsplash.jpg */
+/* https://images.unsplash.com/photo-1563397461573-526179e148d7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=julius-drost-Yq52YU-GrbE-unsplash.jpg */
+</style>
+<body>
+    <section>
+        <div class="one">
+            <div class="one-container">
+                <span class="logo">wakaru</span>
+                <h1 class="welcome">Welcome {{ user.first_name }}</h1>
+                <!-- <span>Browse your courses.</span> -->
+                <div class="courses">
+                    {% for course in courses %}
+                    <div class="course">
+                        <a href="{% url 'courses:course' course.code %}">
+                            <span class="c-code">{{ course.code }}</span>
+                            <h3>{{ course.title }}</h3>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="two"></div>
+    </section>
+</body>
+</html>

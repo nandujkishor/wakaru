@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel='stylesheet' href='https://cdn.quilljs.com/1.3.6/quill.bubble.css'>
+<link rel="stylesheet" type="text/css" href="{% static 'css/editor.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Sans+Condensed|Gelasio|Lora|Public+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"> -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="loading">
+    <div class="loadingio-spinner-rolling-yldbvdceqrn"><div class="ldio-hb558jloxil">
+    <div></div>
+    </div></div>
+    <div class="info" style="font-family: Helvetica, sans-serif;">
+      <span style="display: inline-block;margin-left: 10px; max-width: 300px;">Did you know?<br>{{ fact }}</span>
+    </div>
+  </div>
+  <header>
+    <div class="h-back">
+      <a href="{% url 'courses:course' page.lecture.edition.course.code %}"><span class="material-icons">arrow_back_ios</span></a>
+    </div>
+    <div class="h-info">
+      <span>{{ page.lecture.edition.course.code }}: {{ page.lecture.edition.course.title }}</span>
+      <span>{{ page.lecture.title }}</span>
+    </div>
+    <!-- <div class="h-publish">
+      <span>Publish</span>
+    </div> -->
+    <div class="h-stat">
+      <span class="h-autosave">All changes saved to wakaru</span>
+      {% if page.pub_time %}
+      <span class="h-lastsave">Last published at {{ page.pub_time }}</span>
+      {% else %}
+      <span class="h-lastsave">Not published yet</span>
+      {% endif %}
+    </div>
+    <div class="h-avatardiv">
+      <img src="https://vole.wtf/plaiceholder-images/avatar.jpg" class="h-avatar">
+    </div>
+  </header>
+  <div id="scrolling-container">
+  <div id="quill-container">
+  {{ page.pub_content_html|safe }}
+  </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+  <script src='https://cdn.quilljs.com/1.3.6/quill.js'></script>
+  <script id="rendered-js">
+    var Delta = Quill.import('delta');
+    var quill = new Quill('#quill-container', {
+    modules: {
+      toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic'],
+      ['image', 'code-block', 'blockquote', 'formula', 'video']] },
+    scrollingContainer: '#scrolling-container',
+    placeholder: 'Start from this point and onward!',
+    theme: 'bubble' });
+
+    var change = new Delta();
+    quill.on('text-change', function(delta) {
+      change = change.compose(delta);
+      $(".h-autosave").text("Saving changes to wakaru")
+    });
+    setInterval(function() {
+      if (change.length() > 0) {
+        console.log('Saving changes', change);
+        /* 
+        Send partial changes
+        $.post('/your-endpoint', { 
+          partial: JSON.stringify(change) 
+        });
+        
+        Send entire document
+        */
+        $.post('save/', { 
+          doc: JSON.stringify(quill.getContents())
+        });
+        var currentdate = new Date();
+        var datetime = "Last save at "
+                        + ("0" + currentdate.getHours()).slice(-2) + ":"  
+                        + ("0" + currentdate.getMinutes()).slice(-2) + ":"
+                        + ("0" + currentdate.getSeconds()).slice(-2);
+        $(".h-lastsave").text(datetime);
+        $(".h-autosave").text("All changes saved to wakaru")
+        change = new Delta();
+      }
+    }, 5*1000);
+  </script>
+  <script>
+    $( window ).load(function() {
+      setTimeout(function(){
+        console.log("All assets loaded");
+        $(".loading").hide();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
