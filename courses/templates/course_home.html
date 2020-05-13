@@ -64,12 +64,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         {% if instructor %}
         <script>
-            $(".editaction").click(function() {
+            function makeeditable() {
                 console.log("Click");
                 $(this).attr('contenteditable','true');
                 $(this).addClass('editable');
-            });
-            $(".l-title").on('keydown', function(e) {
+            }
+            function saveeditable(e, data) {
                 if (e.which == 13) {
                     console.log("Enter");
                     $(this).attr('contenteditable','false');
@@ -77,12 +77,15 @@
                     $(this).blur();
                     var lec = $(this).parent().parent().get(0).id;
                     lec = lec.substring(2);
-                    $.post(lec+"/title/", {data:$(this).text()}, function(data, status) {
+                    var cl = $(this).attr('class').split(/\s+/)[0].substring(2);
+                    $.post(lec+"/"+cl+"/", {data:$(this).text()}, function(data, status) {
                         console.log(data, status);
                     });
                     return false;
                 }
-            });
+            }
+            $(".editaction").click(makeeditable);
+            $(".l-title").on('keydown', saveeditable);
             $(".l-desc").on('keydown', function(e) {
                 if (e.which == 13) {
                     console.log("Enter");
@@ -102,6 +105,8 @@
                     $(".main-lectures").append(data);
                     $("html, body").animate({ scrollTop: $(document).height()-$(window).height()});
                 });
+                $(".editaction").unbind("click");
+                $(".editaction").click(makeeditable);
             }
         </script>
         {% endif %}

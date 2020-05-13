@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 html, body {
-    font-family: 'Public sans';
+    font-family: 'public sans', Arial, sans-serif;
     height: 100%;
 }
 ul {
@@ -38,8 +38,11 @@ a {
     /* color: rgba(0, 0, 0, 0.85); */
 }
 .large {
-    font-size: 25px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    margin-bottom: 17px;
+    display: block;
+}
+content {
     display: block;
 }
 content,
@@ -81,7 +84,7 @@ content,
     margin: 10px 0;
     border-bottom: 1px solid #e1e1e1;
     display: grid;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 65px 1fr;
 }
 .l-title {
     /* padding: 4px; */
@@ -92,7 +95,7 @@ content,
     font-size: 0.95rem;
     color: rgba(0, 0, 0, 0.8);
     margin: 8px 0 20px;
-    line-height: 1.3rem;
+    line-height: 1.4rem;
 }
 .editable {
     -moz-outline-radius: 6px;
