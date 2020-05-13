@@ -13,10 +13,12 @@ def editor(request, hash):
     page = Page.objects.filter(hash=hash).first()
     if page is None: raise Http404()
 
-    try: fact = requests.get('http://numbersapi.com/random/trivia').text
+    try: fact = requests.get('http://numbersapi.com/random/trivia')
     except Exception as e: fact = "Oops. Our trivia engine is suffering a heart attack."
 
-    print(page)
+    if fact.status_code != '200': fact = "Oops. Our trivia engine is suffering a heart attack."
+    else: fact = fact.text
+
     return render(request, "editor.html", {'page':page, 'fact':fact})
 
 @login_required

@@ -15,8 +15,10 @@ header {
     display: grid;
     grid-template-columns: 20px 1fr 60px 20px;
     /* height: 60px; */
+    position: fixed;
     width: 100%;
     color: rgba(0, 0, 0, 0.8);
+    background-color: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 header span {
@@ -54,9 +56,15 @@ content {
     margin: 0 auto;
     padding: 10px;
     line-height: 1.65rem;
+    font-family: "georgia", serif;
+}
+.one {
+    height: 60px;
+    width: 100%;
 }
 h1, h2 {
     font-weight: normal;
+    line-height: 2.6rem;
 }
 content p {
     margin-bottom: 15px;

@@ -1,0 +1,15 @@
+.ql-editor p,
+p {
+    margin-bottom: 15px;
+}
+.ql-bubble .ql-editor blockquote,
+blockquote {
+    font-size: 1.2rem;
+    /* background-color: rgb(5, 186, 218, 0.5); */
+    background-color: rgb(244, 242, 212);
+    margin: 0 0 10px;
+    color: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    font-family: 'public sans', sans-serif;
+    border-left: none;
+}

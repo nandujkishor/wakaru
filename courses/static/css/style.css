@@ -84,7 +84,7 @@ content,
     grid-template-columns: 80px 1fr;
 }
 .l-title {
-    padding: 6px;
+    /* padding: 4px; */
     border: none;
 }
 .l-desc {
@@ -95,10 +95,14 @@ content,
     line-height: 1.3rem;
 }
 .editable {
-    border: 2px solid rgba(63, 14, 64, 0.7);
-    padding: 4px;
-    border-radius: 5px;
-    outline: none;
+    -moz-outline-radius: 6px;
+    outline: 2px solid rgba(63, 14, 64, 0.7);
+    outline-offset: 3px;
+}
+.editaction:hover {
+    -moz-outline-radius: 6px;
+    outline: 2px solid rgba(63, 14, 64, 0.4);
+    outline-offset: 3px;
 }
 .l-comment.editable {
     padding: 0px;
@@ -113,7 +117,7 @@ content,
     margin-right: 15px;
     display: inline-block;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-    background-color: #3F0E40;
+    background-color: #05bada;
 }
 .l-textbook img {
     height: 90px;

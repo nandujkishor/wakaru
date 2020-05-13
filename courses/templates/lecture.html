@@ -7,8 +7,8 @@
         {% endif %}
     </div>
     <div class="l-content">
-        <span class="l-order">Lecture {{ lecture.order }}:&nbsp;</span><span class="l-title editaction">{{ lecture.title }}</span>
-        <span class="l-desc editaction">{{ lecture.desc }}</span>
+        <span class="l-order">Lecture {{ lecture.order }}:&nbsp;</span><span class="l-title {% if instructor %}editaction{% endif %}">{{ lecture.title }}</span>
+        <span class="l-desc {% if instructor %}editaction{% endif %}">{{ lecture.desc }}</span>
         <!-- <a href="">Lecture Note</a>&nbsp;
         <a href="">Handout</a>&nbsp;
         <a href="">Sample problems</a>
@@ -34,10 +34,10 @@
             </a>
             {% endif %}
             {% endfor %}
-            <!-- <div class="l-resource l-textbook">
+            <div class="l-resource l-textbook">
                 <img src="https://kbimages1-a.akamaihd.net/a7bb7802-f614-490b-b8b5-d8f6c781f686/353/569/90/False/distributed-computing-4.jpg">
             </div>
-            <span class="l-comment editaction">Read 1.1, 1.2, 1.3 and 1.4</span> -->
+            <!-- <span class="l-comment editaction">Read 1.1, 1.2, 1.3 and 1.4</span> -->
             <!-- <div class="l-resource l-note l-pdf">
                 <span>Handout</span>
                 <span class="material-icons l-icon">picture_as_pdf</span>

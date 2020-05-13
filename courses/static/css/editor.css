@@ -121,9 +121,6 @@ header a {
     font-weight: normal;
     margin-bottom: 10px;
 }
-.ql-editor p {
-    margin-bottom: 15px;
-}
 #quill-container .ql-editor {
     font-size: 1.1rem;
     overflow-y: visible; 
@@ -138,11 +135,6 @@ header a {
     min-height: 100%;
     overflow-y: auto;
 }
-blockquote {
-    font-style: italic;
-    font-size: 1.2rem;
-}
-
 @media screen and (min-width: 768px) {
     header {
         grid-template-columns: 20px 1fr 300px 60px 20px;
