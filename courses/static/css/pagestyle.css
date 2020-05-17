@@ -8,8 +8,29 @@ blockquote {
     /* background-color: rgb(5, 186, 218, 0.5); */
     background-color: rgb(244, 242, 212);
     margin: 0 0 10px;
-    color: rgba(0, 0, 0, 0.9);
-    padding: 15px;
-    font-family: 'public sans', sans-serif;
     border-left: none;
+}
+.imp,
+blockquote,
+.review,
+.textbook {
+    font-family: 'public sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 15px;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 15px 0;
+    line-height: 19px;
+}
+iframe {
+    width: 100%;
+    height: 400px;
+}
+.imp {
+    background-color: rgba(255, 224, 27, 0.5);
+}
+.textbook {
+    background-color: #C5DBF2;
+}
+.review {
+    background-color: #D8EACC;
 }

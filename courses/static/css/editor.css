@@ -135,6 +135,22 @@ header a {
     min-height: 100%;
     overflow-y: auto;
 }
+.ql-textbook:after, 
+.ql-imp:after,
+.ql-review:after {
+    color: #ccc;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+.ql-textbook:after {
+    content: "\f02d";
+}
+.ql-imp:after {
+    content: '\f12a';
+}
+.ql-review:after {
+    content: '\f78c';
+}
 @media screen and (min-width: 768px) {
     header {
         grid-template-columns: 20px 1fr 300px 60px 20px;

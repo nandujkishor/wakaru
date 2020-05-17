@@ -15,18 +15,21 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/pagestyle.css' %}">
 </head>
 <body>
-    <header>
-        <div class="h-back">
-            <a href="{% url 'courses:course' page.lecture.edition.course.code %}"><span class="material-icons">arrow_back_ios</span></a>
-        </div>
-        <div class="h-info">
-            <span>{{ page.lecture.edition.course.code }}: {{ page.lecture.edition.course.title }}</span>
-            <span>{{ page.lecture.title }}</span>
-        </div>
-        <div class="h-avatardiv">
-            <img src="https://vole.wtf/plaiceholder-images/avatar.jpg" class="h-avatar">
-        </div>
-    </header>
+    <section class="header-container">
+        <span class="logo">wakaru</span>
+        <header>
+            <div class="h-info">
+                <span><a href="{% url 'courses:course' page.lecture.edition.course.code %}">{{ page.lecture.edition.course.code }}: {{ page.lecture.edition.course.title }}</a></span>
+                <span class="h-lecture">{{ page.title }}</span>
+            </div>
+            <span class="h-lecturetitle">Part of the lecture: {{ page.lecture.title }}</span>
+            <div class="author">
+                <span>Created by {{ page.creator.first_name }}</span>
+            </div>
+            <a href="whatsapp://send?text=Find {{ page.title }} under the lecture: {{ page.lecture.title }} of the course: {{ page.lecture.edition.course.title }} at https%3A%2F%2Fwakaru.amblygon.org{{ request.path|urlencode }}!" data-action="share/whatsapp/share" class="share">Share via Whatsapp</a>
+            <a href = "https://t.me/share/url?url=https%3A%2F%2Fwakaru.amblygon.org{{ request.path|urlencode }}&text=Check out the note!" class="share">Share via Telegram</a>
+        </header>
+    </section>
     <div class="one"></div>
     <content>
         {{ page.pub_content_html|safe }}

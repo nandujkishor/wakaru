@@ -29,7 +29,8 @@ a {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 } */
 .sidebar-left {
-    background-color: #3F0E40;
+    /* background-color: #3F0E40; */
+    background-color: rgb(41, 51, 82);
     color: rgba(256, 256, 256, 0.9);
 }
 .logo {
@@ -54,6 +55,9 @@ content,
     font-size: 0.9em;
     margin-top: 30px;
     border-top: 1px solid rgba(256, 256, 256, 0.2);
+}
+.cl-course a {
+    color: rgba(256, 256, 256, 0.9);
 }
 .course-listing .cl-course {
     margin-top: 5px;
@@ -83,8 +87,9 @@ content,
     padding: 10px 0;
     margin: 10px 0;
     border-bottom: 1px solid #e1e1e1;
-    display: grid;
-    grid-template-columns: 65px 1fr;
+}
+.schedule {
+    display: none;
 }
 .l-title {
     /* padding: 4px; */
@@ -114,24 +119,27 @@ content,
 }
 .l-resources {
     display: flex;
+    width: 100%;
+    flex-wrap: wrap;
 }
 .l-resource {
-    height: 90px;
+    height: 140px;
     margin-right: 15px;
+    margin-bottom: 15px;
     display: inline-block;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
     background-color: #05bada;
 }
-.l-textbook img {
+/* .l-textbook img {
     height: 90px;
-}
+} */
 .l-comment {
     color: rgba(0, 0, 0, 0.8);
     font-size: 0.8rem;
     width: 80px;
 }
 .l-note {
-    width: 80px;
+    width: 100px;
     padding: 10px;
     font-size: 0.8rem;
     color: white;
@@ -156,7 +164,7 @@ content,
     color: rgba(0, 0, 0, 0.5);
     border: 3px dashed;
     padding: 10px;
-    width: 80px;
+    width: 100px;
     box-shadow: none;
 }
 .l-add:hover {
@@ -195,5 +203,12 @@ content,
         margin-left: 200px;
         display: grid;
         grid-template-columns: 80% 20%;
+    }
+    .lecture {
+        display: grid;
+        grid-template-columns: 65px 1fr;
+    }
+    .schedule {
+        display: block;
     }
 }

@@ -15,7 +15,7 @@ class Page(models.Model):
 
     @classmethod
     def create(cls, lecture, user=None):
-        page = cls(title="Lecture note", lecture=lecture, creator=user)
+        page = cls(title="Lecture note", lecture=lecture, creator=user, pub_content_html="<p>Type ahead.</p>")
         page.save()
         page.hash = hashlib.sha224((str(lecture)+str(page.id)).encode()).hexdigest()
         page.save()

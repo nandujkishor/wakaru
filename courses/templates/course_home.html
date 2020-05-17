@@ -16,7 +16,7 @@
             {% for c in courses %}
             <div class="cl-course">
                 <span {% if c.code == course.code %}class="current"{% endif %}>
-                    {{c.title}}
+                    <a href="{% url 'courses:course' c.code %}">{{c.title}}</a>
                 </span>
             </div>
             {% endfor %}

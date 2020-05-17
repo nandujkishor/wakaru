@@ -4,27 +4,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel='stylesheet' href='https://cdn.quilljs.com/1.3.6/quill.bubble.css'>
+<link rel='stylesheet' href='https://cdn.quilljs.com/1.3.6/quill.quill.css'>
 <link rel="stylesheet" type="text/css" href="{% static 'css/editor.css' %}">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Sans+Condensed|Gelasio|Lora|Public+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"> -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'css/pagestyle.css' %}">
 </head>
 <body>
-  <div class="loading">
+  <!-- <div class="loading">
     <div class="loadingio-spinner-rolling-yldbvdceqrn"><div class="ldio-hb558jloxil">
     <div></div>
     </div></div>
     <div class="info" style="font-family: Helvetica, sans-serif;">
       <span style="display: inline-block;margin-left: 10px; max-width: 300px;">Did you know?<br>{{ fact }}</span>
     </div>
-  </div>
+  </div> -->
   <header>
     <div class="h-back">
       <a href="{% url 'courses:course' page.lecture.edition.course.code %}"><span class="material-icons">arrow_back_ios</span></a>
@@ -48,68 +47,28 @@
       <img src="https://vole.wtf/plaiceholder-images/avatar.jpg" class="h-avatar">
     </div>
   </header>
-  <div id="scrolling-container">
-  <div id="quill-container">
-  {{ page.pub_content_html|safe }}
+  <div id="toolbar">
+    <button class="ql-bold"></button>
+    <button class="ql-script" value="sub"></button>
+    <button class="ql-script" value="super"></button>
   </div>
+  <div id="editor">
+    <p>Hello World!</p>
+    <p>Some initial <strong>bold</strong> text</p>
+    <p><br></p>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src='https://cdn.quilljs.com/1.3.6/quill.js'></script>
   <script id="rendered-js">
-    let Block = Quill.import('blots/block');
-
-    class Important extends Block {
-        static create(value) {
-            let node = super.create();
-            node.setAttribute('class','imp');
-            return node;
-        } 
-    }
-    class Textbook extends Block {
-        static create(value) {
-            let node = super.create();
-            node.setAttribute('class','textbook');
-            return node;
-        } 
-    }
-    class Review extends Block {
-        static create(value) {
-            let node = super.create();
-            node.setAttribute('class','review');
-            return node;
-        }
-    }
-    Important.blotName = 'imp';
-    Important.tagName = 'div';
-    Textbook.blotName = 'textbook';
-    Textbook.tagName = 'div';
-    Review.blotName = 'review';
-    Review.tagName = 'div';
-    Quill.register(Important);
-    Quill.register(Textbook);
-    Quill.register(Review);
     var Delta = Quill.import('delta');
-    var quill = new Quill('#quill-container', {
+    var quill = new Quill('#editor', {
     modules: {
-      toolbar: [
-      [{ header: [1, 2, false] }],
-      ['bold', 'italic'],
-      ['image', 'code-block', 'formula', 'video', 'blockquote'],
-      ['textbook', 'imp', 'review']],
-    },
+      toolbar: {
+        container: '#toolbar',
+      } },
     scrollingContainer: '#scrolling-container',
     placeholder: 'Start from this point and onward!',
-    theme: 'bubble' });
-
-    var impButton = document.querySelector('.ql-imp');
-
-    impButton.addEventListener('click', function() {
-      var range = quill.getSelection();
-      if(range){
-          quill.formatText(range,'imp',true);
-      }else{
-      }
-    });
+    theme: 'snow' });
 
     var change = new Delta();
     quill.on('text-change', function(delta) {

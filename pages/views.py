@@ -11,13 +11,16 @@ from .models import Page, Revision
 @login_required
 def editor(request, hash):
     page = Page.objects.filter(hash=hash).first()
+
     if page is None: raise Http404()
 
-    try: fact = requests.get('http://numbersapi.com/random/trivia')
-    except Exception as e: fact = "Oops. Our trivia engine is suffering a heart attack."
+    # try: fact = requests.get('http://numbersapi.com/random/trivia')
+    # except Exception as e: fact = "Oops. Our trivia engine is suffering a heart attack."
 
-    if fact.status_code != '200': fact = "Oops. Our trivia engine is suffering a heart attack."
-    else: fact = fact.text
+    # if fact.status_code != '200': fact = "Oops. Our trivia engine is suffering a heart attack."
+    # else: fact = fact.text
+
+    fact = "Hello!"
 
     return render(request, "editor.html", {'page':page, 'fact':fact})
 
@@ -33,12 +36,16 @@ def save(request, hash):
     # print(request.POST['doc'])
     # print("Delta")
     delta = json.loads(request.POST['doc'])['ops']
+    html = request.POST['html']
+
+    print(html)
+
     revision = Revision.create(page, delta, request.user)
     revision.save()
 
     # Temporarily: since no drafts right now
     page.pub_content_delta = delta
-    page.pub_content_html = html.render(delta)
+    page.pub_content_html = html
     page.pub_time = timezone.now()
     page.save()
 
