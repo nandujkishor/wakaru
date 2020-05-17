@@ -15,7 +15,6 @@ def home(request):
     courses = Course.objects.all()
     return render(request, "home.html", {'user':request.user, 'courses':courses})
 
-@login_required
 def course(request, code):
     try: course = Course.objects.get(code=code.upper())
     except Exception as e: raise Http404
@@ -27,7 +26,7 @@ def course(request, code):
     lectures = Lecture.objects.filter(edition=edition).all()
     # Temp: for this semester only
 
-    if edition.instructors.filter(pk=request.user.id):
+    if request.user is not None and edition.instructors.filter(pk=request.user.id):
         instructor = True
         # courses = Course.objects.filter(edition__instructors=request.user).all()
     else: instructor = False
