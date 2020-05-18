@@ -25,6 +25,13 @@ class Edition(models.Model):
     students = models.ManyToManyField(User, related_name="student")
     instructors = models.ManyToManyField(User, related_name="instructor")
     term = models.CharField('Term', choices=TERMS, max_length=1)
+    support = models.CharField('Support', max_length=1000, null=True)
+    teams_url = models.CharField('Teams URL', max_length=1000, null=True, blank=True)
+    piazza_url = models.CharField('Piazza URL', max_length=1000, null=True, blank=True)
+    textbook_img = models.CharField('Textbook image', max_length=1000, null=True, blank=True)
+    textbook_url = models.CharField('Textbook URL', max_length=1000, null=True, blank=True)
+    textbook_title = models.CharField('Textbook title', max_length=100, null=True, blank=True)
+    textbook_authors = models.CharField('Textbook authors', max_length=1000, null=True, blank=True)
 
     def __str__(self):
         return self.course.code + " " + str(self.year) + " " + self.get_term_display()

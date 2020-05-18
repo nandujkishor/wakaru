@@ -83,20 +83,44 @@ content,
     border-bottom: 2px solid;
 }
 .course-info {
-    text-align: right;
+    /* text-align: right; */
+    margin-top: 10px;
 }
 .course-desc {
     display: block;
+    font-size: 0.95rem;
+    background-color: #D8EACC;
+    padding: 15px;
     text-align: left;
+    line-height: 1.3rem;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 30px 10px 10px;
+}
+.course-support {
+    margin: 10px;
+    color: rgba(0, 0, 0, 0.9);
+    display: block;
+    font-size: 0.95rem;
+    background-color: #C5DBF2;
+    padding: 15px;
+    text-align: left;
+    line-height: 1.3rem;
 }
 .desc-icon {
     display: inline-block;
     text-decoration: none;
-    padding-right: 8px;
+    padding-left: 8px;
 }
 .desc-icon img {
     height: 30px;
     width: initial;
+}
+.textbook {
+    margin: 0 10px;
+    max-width: 100px;
+}
+.textbook div {
+    margin-left: 10px;
 }
 /* Lecture section */
 .lecture {

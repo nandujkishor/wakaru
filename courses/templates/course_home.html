@@ -58,16 +58,20 @@
             <!-- </div> -->
         </content>
         <aside class="other-side">
+            <div class="course-info">
+                <a href="{{ edition.teams_url }}" target="_blank" class="desc-icon" data-tippy-content="Open the course in Microsoft Teams" tippy><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADn0lEQVRoge2ZX2hbdRTHPyf33qVMWm3Bqbj6IDplnVv3EGVFKr5sFPYgiCIqeylzPpiiTkdh0LUg+CA6WCtoBhXK6oMVK7pS+jCqoq2TMQKKUIIUoeLGmLga96e5uWcPSUZ2k5vc5N7SBfKBQO75fX/n/A6/+/t7oUmTJg2NrIfTvngq2pK+ckjQl4EdefNvqExea707MTv66I2wYoWewAsHFh60jU0zoLs8JEkzm9k/NdHzVxjxImE4KdAXT0WrNB6g2zas033xVDSMmGYYTgq0pK8cqtL4At3R9L8HgbFiY6x3vFMjkePA3rzpDJIdPDffv+TlKNQeQPUVv1Lhdm2sd7xTJZIEngda87/nRI3FWO94p5efcBMQttcg3lH8pJHIcYQOt0qhHcP40MtLuAnUhuN63ltWBaij+7zKQn6F+L0GsX+toF5FoSYgyCm/WkUmXaYznlplzqusZBbauefkm4q+B9zltzEFUkvnb/2PRAw67r2fe9q3lJMmrfTmxG0WyQ6KGs8otLu0l00xD3vFLOmBehvvxnGy/HPpQrmi3EI21bVWbDw337+E4+wSkSmUVZRVVb4wMLvPfvfqileckpX4iT0Jz/etHh55fHc6//dXhc+t9OaEu/FBCHUhK8f0Z7HW9fS/kdNoKPjqgbbWKD/OHaioeXrfBKv/hbbJ9I2vBGzbYeFsfhwJ9Dy5FYCFX1YozNC27V6XcsRHtOqYsu0MFy/+zdX/05VkKwKvzU52zRYbfSVw9VqG19/K1TPNCOd/6AfgjXfmPBteC6Zpcd+WB1heTlWSbVX4FHio2HjHjAHTsvzISjZ1d0wC9dJMYKNpJrDRNHwCNe+FbNthZ8/J9WhLXTRaD6y6DY2WQMkxtFwCFTcktWAYvlZX36jgPoaWOZGJHiWEJAzD4uFtMd96x6m8p1JItt0g4bYHuhuNj2gS8HMTV5W1TOb6n8uplnJlCknLMPefnnis5D412BhQvg9Uv4hNljWtQhz4mdwbkAYWVYi3rfFUucZDwCOlCF8rDATxcQvly7lTXV/hui+tRqAeOHFM5oGfgvjI8wcdzNRTMfA06gjvApkgPlR5e3RA6jqPBk7g4yFZFGGw3voK748Nyzf11g9lITsxJB8BR8D7DrMMCnwwNsTRILFD/cQ0MKLPKnwCbKsiTQGHR4/Jt0Fjhv6NbHhYzctCnygvqdBN7hCeAS6hLAAzF7YzPfWiZMOO3aRJkwbkJpWnEhwf96zLAAAAAElFTkSuQmCC"/></a>
+                <a href="{{ edition.piazza_url }}" target="_blank" class="desc-icon" data-tippy-content="Open the course in Piazza" tippy><img src="{% static 'images/p-logo.png' %}"></a>
+                <span class="course-desc">{{ edition.desc }}</span>
+                <span class="course-support">{{ edition.support }}</span>
+                <a href="{{ textbook_url }}">
+                    <img class="textbook" src="{{ edition.textbook_img }}">
+                </a>
+            </div>
             {% if instructor %}
             <section class="instructor-control">
                 <span class="l-new" onclick="newlecture()">New lecture</span>
             </section>
             {% endif %}
-            <div class="course-info">
-                <span class="course-desc">{{ edition.desc }}</span>
-                <a href="" class="desc-icon" data-tippy-content="Open the course in Microsoft Teams" tippy><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADn0lEQVRoge2ZX2hbdRTHPyf33qVMWm3Bqbj6IDplnVv3EGVFKr5sFPYgiCIqeylzPpiiTkdh0LUg+CA6WCtoBhXK6oMVK7pS+jCqoq2TMQKKUIIUoeLGmLga96e5uWcPSUZ2k5vc5N7SBfKBQO75fX/n/A6/+/t7oUmTJg2NrIfTvngq2pK+ckjQl4EdefNvqExea707MTv66I2wYoWewAsHFh60jU0zoLs8JEkzm9k/NdHzVxjxImE4KdAXT0WrNB6g2zas033xVDSMmGYYTgq0pK8cqtL4At3R9L8HgbFiY6x3vFMjkePA3rzpDJIdPDffv+TlKNQeQPUVv1Lhdm2sd7xTJZIEngda87/nRI3FWO94p5efcBMQttcg3lH8pJHIcYQOt0qhHcP40MtLuAnUhuN63ltWBaij+7zKQn6F+L0GsX+toF5FoSYgyCm/WkUmXaYznlplzqusZBbauefkm4q+B9zltzEFUkvnb/2PRAw67r2fe9q3lJMmrfTmxG0WyQ6KGs8otLu0l00xD3vFLOmBehvvxnGy/HPpQrmi3EI21bVWbDw337+E4+wSkSmUVZRVVb4wMLvPfvfqileckpX4iT0Jz/etHh55fHc6//dXhc+t9OaEu/FBCHUhK8f0Z7HW9fS/kdNoKPjqgbbWKD/OHaioeXrfBKv/hbbJ9I2vBGzbYeFsfhwJ9Dy5FYCFX1YozNC27V6XcsRHtOqYsu0MFy/+zdX/05VkKwKvzU52zRYbfSVw9VqG19/K1TPNCOd/6AfgjXfmPBteC6Zpcd+WB1heTlWSbVX4FHio2HjHjAHTsvzISjZ1d0wC9dJMYKNpJrDRNHwCNe+FbNthZ8/J9WhLXTRaD6y6DY2WQMkxtFwCFTcktWAYvlZX36jgPoaWOZGJHiWEJAzD4uFtMd96x6m8p1JItt0g4bYHuhuNj2gS8HMTV5W1TOb6n8uplnJlCknLMPefnnis5D412BhQvg9Uv4hNljWtQhz4mdwbkAYWVYi3rfFUucZDwCOlCF8rDATxcQvly7lTXV/hui+tRqAeOHFM5oGfgvjI8wcdzNRTMfA06gjvApkgPlR5e3RA6jqPBk7g4yFZFGGw3voK748Nyzf11g9lITsxJB8BR8D7DrMMCnwwNsTRILFD/cQ0MKLPKnwCbKsiTQGHR4/Jt0Fjhv6NbHhYzctCnygvqdBN7hCeAS6hLAAzF7YzPfWiZMOO3aRJkwbkJpWnEhwf96zLAAAAAElFTkSuQmCC"/></a>
-                <a href="" class="desc-icon" data-tippy-content="Open the course in Piazza" tippy><img src="{% static 'images/p-logo.png' %}"></a>
-            </div>
             <!-- <section class="add">
                 <a href="1/add/page/">Add page</a>
             </section> -->
