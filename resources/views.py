@@ -38,4 +38,4 @@ def add(request, code, lecture):
     return HttpResponseRedirect(reverse('courses:course', args=[code]))
 
 def video(request):
-    return HttpResponseRedirect("https://youtube.com")
+    return HttpResponseRedirect("https://www.youtube.com/watch?v=pzXSSQf__Co")
