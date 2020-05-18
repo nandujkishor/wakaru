@@ -16,7 +16,8 @@ def home(request):
     return render(request, "home.html", {'user':request.user, 'courses':courses})
 
 def landing(request):
-    return render(request, "landing.html")
+    ccount = len(Course.objects.all())
+    return render(request, "landing.html", {'count':ccount})
 
 def course(request, code):
     try: course = Course.objects.get(code=code.upper())
