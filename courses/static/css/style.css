@@ -20,6 +20,7 @@ li {
 }
 a {
     text-decoration: none;
+    outline: none;
 }
 .subt {
     display: block;

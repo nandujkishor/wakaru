@@ -14,13 +14,14 @@ def editor(request, hash):
 
     if page is None: raise Http404()
 
+    fact = requests.get('http://numbersapi.com/random/trivia').text
+    # print(p.text)
+
     # try: fact = requests.get('http://numbersapi.com/random/trivia')
     # except Exception as e: fact = "Oops. Our trivia engine is suffering a heart attack."
 
     # if fact.status_code != '200': fact = "Oops. Our trivia engine is suffering a heart attack."
     # else: fact = fact.text
-
-    fact = "Hello!"
 
     return render(request, "editor.html", {'page':page, 'fact':fact})
 

@@ -31,8 +31,11 @@ def add(request, code, lecture):
         return HttpResponse("error")
     manager = PreviewManager(cache_path, create_folder= True)
     print(resource.file.path)
-    path_to_preview_image = manager.get_jpeg_preview(resource.file.path, page=1)
+    path_to_preview_image = manager.get_jpeg_preview(resource.file.path, page=0)
     resource.preview = path_to_preview_image.split('/')[-1]
     resource.save()
     
     return HttpResponseRedirect(reverse('courses:course', args=[code]))
+
+def video(request):
+    return HttpResponseRedirect("https://youtube.com")
