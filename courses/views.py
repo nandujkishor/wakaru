@@ -15,6 +15,9 @@ def home(request):
     courses = Course.objects.all()
     return render(request, "home.html", {'user':request.user, 'courses':courses})
 
+def landing(request):
+    return render(request, "landing.html")
+
 def course(request, code):
     try: course = Course.objects.get(code=code.upper())
     except Exception as e: raise Http404
