@@ -31,7 +31,8 @@ def course(request, code):
         # courses = Course.objects.filter(edition__instructors=request.user).all()
     else: instructor = False
 
-    return render(request, "course_home.html", {'course':course, 'courses':courses, 'lectures':lectures, 'user':request.user, 'instructor':instructor})
+
+    return render(request, "course_home.html", {'course':course, 'courses':courses, 'edition':edition, 'lectures':lectures, 'user':request.user, 'instructor':instructor})
 
 def addpage(request, code, lecture):
     try: course = Course.objects.get(code=code.upper())

@@ -25,7 +25,7 @@ SECRET_KEY = 'nz34djh@^0t54-cp#!oc6-@y0or*2=c)ijk(uacibg#_qb3xw*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '192.168.43.214', '127.0.0.1', 'localhost']
 
 LOGIN_URL = '/ad/login/'
 LOGIN_REDIRECT_URL = '/ad/login/'
@@ -124,3 +124,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

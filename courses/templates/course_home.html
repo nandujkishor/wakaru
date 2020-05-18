@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Sans+Condensed|Gelasio|Lora|Public+Sans&display=swap" rel="stylesheet">
 <!-- <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet"> -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script async defer src="https://teams.microsoft.com/share/launcher.js"></script>
 <body>
     <aside class="sidebar-left">
         <a href="/" style="color:#fff"><span class="logo">wakaru</span></a>
@@ -15,7 +18,7 @@
             <!-- <span>Courses</span> -->
             {% for c in courses %}
             <div class="cl-course">
-                <span {% if c.code == course.code %}class="current"{% endif %}>
+                <span data-tippy-content="{{ c.code }}" {% if c.code == course.code %}class="current"{% endif %} tippy>
                     <a href="{% url 'courses:course' c.code %}">{{c.title}}</a>
                 </span>
             </div>
@@ -25,7 +28,7 @@
     <main>
         <content>
             <span class="large">{{ course.code }}: {{ course.title }}</span>
-            <section>
+            <!-- <section>
                 <div class="top-nav">
                     <ul>
                         <li>Home</li>
@@ -34,7 +37,8 @@
                         <li>Resources</li>
                     </ul>
                 </div>
-            </section>
+            </section> -->
+            
             <!-- Lectures section -->
             <section class="main-lectures">
                 {% for lecture in lectures %}
@@ -49,20 +53,46 @@
                     <span>Lecture 3: Replicated systems</span>
                 </div> -->
             </section>
+            <!-- <div class="popup">
+                <input type="text"> -->
+            <!-- </div> -->
         </content>
-        <aside>
+        <aside class="other-side">
             {% if instructor %}
             <section class="instructor-control">
                 <span class="l-new" onclick="newlecture()">New lecture</span>
-                <span class="l-new ic-stud">Add students</span>
             </section>
             {% endif %}
+            <div class="course-info">
+                <span class="course-desc">{{ edition.desc }}</span>
+                <a href="" class="desc-icon" data-tippy-content="Open the course in Microsoft Teams" tippy><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADn0lEQVRoge2ZX2hbdRTHPyf33qVMWm3Bqbj6IDplnVv3EGVFKr5sFPYgiCIqeylzPpiiTkdh0LUg+CA6WCtoBhXK6oMVK7pS+jCqoq2TMQKKUIIUoeLGmLga96e5uWcPSUZ2k5vc5N7SBfKBQO75fX/n/A6/+/t7oUmTJg2NrIfTvngq2pK+ckjQl4EdefNvqExea707MTv66I2wYoWewAsHFh60jU0zoLs8JEkzm9k/NdHzVxjxImE4KdAXT0WrNB6g2zas033xVDSMmGYYTgq0pK8cqtL4At3R9L8HgbFiY6x3vFMjkePA3rzpDJIdPDffv+TlKNQeQPUVv1Lhdm2sd7xTJZIEngda87/nRI3FWO94p5efcBMQttcg3lH8pJHIcYQOt0qhHcP40MtLuAnUhuN63ltWBaij+7zKQn6F+L0GsX+toF5FoSYgyCm/WkUmXaYznlplzqusZBbauefkm4q+B9zltzEFUkvnb/2PRAw67r2fe9q3lJMmrfTmxG0WyQ6KGs8otLu0l00xD3vFLOmBehvvxnGy/HPpQrmi3EI21bVWbDw337+E4+wSkSmUVZRVVb4wMLvPfvfqileckpX4iT0Jz/etHh55fHc6//dXhc+t9OaEu/FBCHUhK8f0Z7HW9fS/kdNoKPjqgbbWKD/OHaioeXrfBKv/hbbJ9I2vBGzbYeFsfhwJ9Dy5FYCFX1YozNC27V6XcsRHtOqYsu0MFy/+zdX/05VkKwKvzU52zRYbfSVw9VqG19/K1TPNCOd/6AfgjXfmPBteC6Zpcd+WB1heTlWSbVX4FHio2HjHjAHTsvzISjZ1d0wC9dJMYKNpJrDRNHwCNe+FbNthZ8/J9WhLXTRaD6y6DY2WQMkxtFwCFTcktWAYvlZX36jgPoaWOZGJHiWEJAzD4uFtMd96x6m8p1JItt0g4bYHuhuNj2gS8HMTV5W1TOb6n8uplnJlCknLMPefnnis5D412BhQvg9Uv4hNljWtQhz4mdwbkAYWVYi3rfFUucZDwCOlCF8rDATxcQvly7lTXV/hui+tRqAeOHFM5oGfgvjI8wcdzNRTMfA06gjvApkgPlR5e3RA6jqPBk7g4yFZFGGw3voK748Nyzf11g9lITsxJB8BR8D7DrMMCnwwNsTRILFD/cQ0MKLPKnwCbKsiTQGHR4/Jt0Fjhv6NbHhYzctCnygvqdBN7hCeAS6hLAAzF7YzPfWiZMOO3aRJkwbkJpWnEhwf96zLAAAAAElFTkSuQmCC"/></a>
+                <a href="" class="desc-icon" data-tippy-content="Open the course in Piazza" tippy><img src="{% static 'images/p-logo.png' %}"></a>
+            </div>
             <!-- <section class="add">
                 <a href="1/add/page/">Add page</a>
             </section> -->
         </aside>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         {% if instructor %}
+        <form action="/" method="POST" enctype="multipart/form-data" style="display: none;" id="resup-form">
+            <input type="file" id="id_file" name="file">
+            {% csrf_token %}
+            <input type="submit" value="submit">
+        </form>
+        <script>
+        var uplecture = 0;
+        $(".l-resup").click(function() {
+            $("#id_file").trigger('click');
+            uplecture = $(this).attr('id');
+            console.log(uplecture);
+        });
+        $("#id_file").change(function(e) {
+            console.log("Change");
+            console.log(e.target.files[0]);
+            $('#resup-form').attr('action', "/resources/{{ course.code }}/"+uplecture+"/");
+            $("#resup-form").submit();
+        });
+        </script>
         <script>
             function makeeditable() {
                 console.log("Click");
@@ -109,6 +139,10 @@
                 $(".editaction").click(makeeditable);
             }
         </script>
+        {% endif %}
+        <script>tippy('[tippy]', {'placement':'bottom'});</script>
+        {% if instructor %}
+        <script>tippy('[instructor]', {'placement':'bottom'});</script>
         {% endif %}
     </main>
 </body>

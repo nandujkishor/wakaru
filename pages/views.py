@@ -38,7 +38,7 @@ def save(request, hash):
     delta = json.loads(request.POST['doc'])['ops']
     html = request.POST['html']
 
-    print(html)
+    print(delta)
 
     revision = Revision.create(page, delta, request.user)
     revision.save()

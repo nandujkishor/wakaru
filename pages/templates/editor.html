@@ -15,6 +15,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'css/pagestyle.css' %}">
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 </head>
 <body>
   <div class="loading">
@@ -53,9 +55,15 @@
   {{ page.pub_content_html|safe }}
   </div>
   </div>
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/zenburn.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src='https://cdn.quilljs.com/1.3.6/quill.js'></script>
   <script id="rendered-js">
+    // hljs.configure({ 
+    //   languages: ['javascript', 'java', 'python']
+    // });
     let Block = Quill.import('blots/block');
 
     class Important extends Block {
@@ -94,8 +102,10 @@
       toolbar: [
       [{ header: [1, 2, false] }],
       ['bold', 'italic'],
+      ['list'],
       ['image', 'code-block', 'formula', 'video', 'blockquote'],
       ['textbook', 'imp', 'review']],
+      syntax: true,
     },
     scrollingContainer: '#scrolling-container',
     placeholder: 'Start from this point and onward!',
@@ -110,6 +120,8 @@
       }else{
       }
     });
+
+    tippy('[data-tippy-content]');
 
     var change = new Delta();
     quill.on('text-change', function(delta) {

@@ -19,7 +19,7 @@ blockquote,
     padding: 15px;
     color: rgba(0, 0, 0, 0.9);
     margin: 15px 0;
-    line-height: 19px;
+    line-height: 21px;
 }
 iframe {
     width: 100%;
@@ -33,4 +33,9 @@ iframe {
 }
 .review {
     background-color: #D8EACC;
+}
+.ql-bubble .ql-editor h1, 
+.ql-bubble .ql-editor h2, 
+h1, h2 {
+    line-height: 1.8rem;
 }
