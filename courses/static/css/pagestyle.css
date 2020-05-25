@@ -14,7 +14,7 @@ blockquote {
 blockquote,
 .review,
 .textbook {
-    font-family: 'public sans', sans-serif;
+    font-family: 'helvetica', sans-serif;
     font-size: 0.9rem;
     padding: 15px;
     color: rgba(0, 0, 0, 0.9);

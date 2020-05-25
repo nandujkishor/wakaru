@@ -27,11 +27,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/zenburn.
                 <span class="h-lecturetitle">Part of the lecture: {{ page.lecture.title }}</span>
                 <!-- <span class="h-lecture">{{ page.title }}</span> -->
             </div>
-            <div class="author">
+            <!-- <div class="author">
                 <span>Created by {{ page.creator.first_name }}</span>
             </div>
             <a href="whatsapp://send?text=Find {{ page.title }} under the lecture: {{ page.lecture.title }} of the course: {{ page.lecture.edition.course.title }} at https%3A%2F%2Fwakaru.amblygon.org{{ request.path|urlencode }}!" data-action="share/whatsapp/share" class="share">Share via Whatsapp</a>
-            <a href="https://t.me/share/url?url=https%3A%2F%2Fwakaru.amblygon.org{{ request.path|urlencode }}&text=Check out the note!" class="share">Share via Telegram</a>
+            <a href="https://t.me/share/url?url=https%3A%2F%2Fwakaru.amblygon.org{{ request.path|urlencode }}&text=Check out the note!" class="share">Share via Telegram</a> -->
+            <div class="hyp-message">
+                <img src="https://d242fdlp0qlcia.cloudfront.net/uploads/2016/12/15180059/logo_new.png">
+                <span>Annotate the text and hold discussions with your peers. Use the Hypothes.is service integrated to this page to highlight and annotate content seamlessly. Select any content to highlight or annotate.</span>
+            </div>
         </header>
     </section>
 
@@ -39,5 +43,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/zenburn.
         {{ page.pub_content_html|safe }}
     </content>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    <script src="https://hypothes.is/embed.js" async></script>
 </body>
 </html>
