@@ -63,7 +63,7 @@
                 <a href="{{ edition.piazza_url }}" target="_blank" class="desc-icon" data-tippy-content="Open the course in Piazza" tippy><img src="{% static 'images/p-logo.png' %}"></a>
                 <span class="course-desc">{{ edition.desc }}</span>
                 <span class="course-support">{{ edition.support }}</span>
-                <a href="{{ textbook_url }}">
+                <a href="{{ edition.textbook_url }}" target="_blank">
                     <img class="textbook" src="{{ edition.textbook_img }}">
                 </a>
             </div>

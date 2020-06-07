@@ -35,7 +35,7 @@
             {% endif %}
             {% endfor %}
             {% for resource in lecture.resource_set.all %}
-            <a href="/media/{{ resource.file }}">
+            <a href="/media/{{ resource.file }}" target="_blank">
                 <div class="l-resource l-pdf">
                     <img data-tippy-content="{{ resource.title }}" src="/media/preview/{{ resource.preview }}" tippy>
                     <!-- <span>{{ resource.title }}</span> -->
