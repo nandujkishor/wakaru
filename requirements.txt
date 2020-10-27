@@ -3,7 +3,7 @@ asgiref==3.2.3
 certifi==2019.11.28
 cffi==1.14.0
 chardet==3.0.4
-cryptography==2.8
+cryptography==3.2
 diff-match-patch==20181111
 Django==3.0.7
 idna==2.9
